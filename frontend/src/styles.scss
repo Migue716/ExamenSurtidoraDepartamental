@@ -1,11 +1,165 @@
+:root {
+  --app-header: #0c3535;
+  --app-teal: #00b4b4;
+  --app-teal-dark: #009a9a;
+  --app-surface: #f0f8f8;
+  --app-muted: #94a3b8;
+  --app-text: #0c3535;
+  --app-border: #f1f5f9;
+  --font-sans: Outfit, sans-serif;
+}
+
 html,
 body {
   height: 100%;
 }
 
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-sans);
+}
+
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
-  background: #f3f6fb;
-  color: #1c2834;
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-size: 14px;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.pagina {
+  display: flex;
+  flex-direction: column;
+}
+
+.tarjeta {
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgb(15 23 42 / 4%);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding: 0.65rem 1.25rem;
+  border-radius: 12px;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.btn mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.btn-primario {
+  background: var(--app-teal);
+  color: #fff;
+  box-shadow: 0 1px 2px rgb(0 180 180 / 18%);
+}
+
+.btn-primario:hover {
+  background: var(--app-teal-dark);
+}
+
+.btn-secundario {
+  background: #fff;
+  color: #64748b;
+  border: 1px solid #e2e8f0;
+}
+
+.btn-secundario:hover {
+  color: #334155;
+  border-color: #cbd5e1;
+  background: #f8fafc;
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--app-teal);
+  border: 1px solid var(--app-teal);
+}
+
+.btn-outline:hover {
+  background: #f0fdfa;
+}
+
+.btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.campo {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: 0.875rem;
+  color: #334155;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s, background 0.15s;
+}
+
+.campo::placeholder {
+  color: #94a3b8;
+}
+
+.campo:focus {
+  border-color: var(--app-teal);
+  box-shadow: 0 0 0 3px rgb(0 180 180 / 12%);
+  background: #fff;
+}
+
+.campo-buscar {
+  background: #f8fafc;
+  padding-left: 2.5rem;
+}
+
+.mat-mdc-progress-bar {
+  --mdc-linear-progress-active-indicator-color: var(--app-teal);
+  --mdc-linear-progress-track-color: transparent;
+}
+
+.mat-mdc-paginator {
+  background: transparent !important;
+  font: 0.875rem var(--font-sans) !important;
+}
+
+.snack-error,
+.snack-ok {
+  --mdc-snackbar-supporting-text-color: #fff;
+}
+
+.snack-error {
+  --mdc-snackbar-container-color: #0c3535;
+}
+
+.snack-ok {
+  --mdc-snackbar-container-color: var(--app-teal-dark);
+}
+
+.mat-mdc-dialog-container {
+  --mdc-dialog-container-shape: 16px;
 }

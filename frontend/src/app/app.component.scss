@@ -1,21 +1,102 @@
+.barra {
+  background: var(--app-header);
+  color: #fff;
+  box-shadow: 0 8px 24px rgb(12 53 53 / 18%);
+}
+
+.barra-interna {
+  max-width: 80rem;
+  margin: 0 auto;
+  height: 56px;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .marca {
-  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: #fff;
   text-decoration: none;
+}
+
+.logo-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: var(--app-teal);
+}
+
+.logo-badge mat-icon {
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
+}
+
+.textos {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.15;
+}
+
+.textos strong {
+  font-size: 0.875rem;
   font-weight: 600;
-  margin-left: 0.5rem;
 }
 
-.espacio {
-  flex: 1 1 auto;
+.textos small {
+  font-size: 10px;
+  color: rgb(255 255 255 / 50%);
 }
 
-.subtitulo {
-  font-size: 0.95rem;
-  opacity: 0.9;
+.nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.38rem 0.75rem;
+  border-radius: 8px;
+  color: rgb(255 255 255 / 60%);
+  text-decoration: none;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.nav-btn mat-icon {
+  font-size: 14px;
+  width: 14px;
+  height: 14px;
+}
+
+.nav-btn:hover {
+  color: #fff;
+  background: rgb(255 255 255 / 10%);
+}
+
+.nav-btn.activo {
+  background: rgb(255 255 255 / 15%);
+  color: #fff;
 }
 
 .contenido {
-  max-width: 1120px;
+  flex: 1;
+  width: 100%;
+  max-width: 80rem;
   margin: 0 auto;
-  padding: 1.25rem 1rem 2.5rem;
+  padding: 2rem 1.5rem;
+  box-sizing: border-box;
+}
+
+@media (max-width: 700px) {
+  .textos small {
+    display: none;
+  }
 }

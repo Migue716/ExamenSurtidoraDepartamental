@@ -1,86 +1,100 @@
-<section class="pagina">
-  @if (carga.visible()) {
-    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-  }
+<section class="pagina formulario-pagina">
+  <a class="volver" routerLink="/clientes">← Listado</a>
 
-  <h1>{{ esEdicion ? 'Editar cliente' : 'Nuevo cliente' }}</h1>
+  <header class="encabezado">
+    <h1>{{ esEdicion ? 'Editar cliente' : 'Nuevo cliente' }}</h1>
+    <p>
+      {{ esEdicion
+        ? 'Actualice los datos. El correo debe seguir siendo único.'
+        : 'Complete los datos obligatorios para registrar al cliente.' }}
+    </p>
+  </header>
 
-  <form class="formulario" [formGroup]="form" (ngSubmit)="guardar()">
-    <mat-form-field appearance="outline">
-      <mat-label>Nombre *</mat-label>
-      <input matInput formControlName="nombre" />
-      @if (mensajeError('nombre')) {
-        <mat-error>{{ mensajeError('nombre') }}</mat-error>
-      }
-    </mat-form-field>
+  <form class="formulario tarjeta" [formGroup]="form" (ngSubmit)="guardar()">
+    <section class="bloque">
+      <h2>Datos personales</h2>
+      <div class="grid">
+        <label>
+          Nombre *
+          <input class="campo" formControlName="nombre" autocomplete="given-name" />
+          @if (mensajeError('nombre')) {
+            <small>{{ mensajeError('nombre') }}</small>
+          }
+        </label>
+        <label>
+          Apellido paterno *
+          <input class="campo" formControlName="apellidoPaterno" autocomplete="family-name" />
+          @if (mensajeError('apellidoPaterno')) {
+            <small>{{ mensajeError('apellidoPaterno') }}</small>
+          }
+        </label>
+        <label>
+          Apellido materno
+          <input class="campo" formControlName="apellidoMaterno" />
+          @if (mensajeError('apellidoMaterno')) {
+            <small>{{ mensajeError('apellidoMaterno') }}</small>
+          }
+        </label>
+        <label>
+          Fecha de nacimiento
+          <input class="campo" type="date" formControlName="fechaNacimiento" />
+          @if (mensajeError('fechaNacimiento')) {
+            <small>{{ mensajeError('fechaNacimiento') }}</small>
+          }
+        </label>
+      </div>
+    </section>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Apellido paterno *</mat-label>
-      <input matInput formControlName="apellidoPaterno" />
-      @if (mensajeError('apellidoPaterno')) {
-        <mat-error>{{ mensajeError('apellidoPaterno') }}</mat-error>
-      }
-    </mat-form-field>
+    <section class="bloque">
+      <h2>Contacto</h2>
+      <div class="grid">
+        <label>
+          Correo electrónico *
+          <input class="campo" type="email" formControlName="correoElectronico" autocomplete="email" />
+          @if (mensajeError('correoElectronico')) {
+            <small>{{ mensajeError('correoElectronico') }}</small>
+          }
+        </label>
+        <label>
+          Teléfono
+          <input class="campo" formControlName="telefono" autocomplete="tel" />
+          @if (mensajeError('telefono')) {
+            <small>{{ mensajeError('telefono') }}</small>
+          }
+        </label>
+      </div>
+    </section>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Apellido materno</mat-label>
-      <input matInput formControlName="apellidoMaterno" />
-      @if (mensajeError('apellidoMaterno')) {
-        <mat-error>{{ mensajeError('apellidoMaterno') }}</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Correo electrónico *</mat-label>
-      <input matInput type="email" formControlName="correoElectronico" />
-      @if (mensajeError('correoElectronico')) {
-        <mat-error>{{ mensajeError('correoElectronico') }}</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Teléfono</mat-label>
-      <input matInput formControlName="telefono" />
-      @if (mensajeError('telefono')) {
-        <mat-error>{{ mensajeError('telefono') }}</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Fecha de nacimiento</mat-label>
-      <input matInput type="date" formControlName="fechaNacimiento" />
-      @if (mensajeError('fechaNacimiento')) {
-        <mat-error>{{ mensajeError('fechaNacimiento') }}</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="completo">
-      <mat-label>Dirección</mat-label>
-      <input matInput formControlName="direccion" />
-      @if (mensajeError('direccion')) {
-        <mat-error>{{ mensajeError('direccion') }}</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Ciudad</mat-label>
-      <input matInput formControlName="ciudad" />
-      @if (mensajeError('ciudad')) {
-        <mat-error>{{ mensajeError('ciudad') }}</mat-error>
-      }
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Código postal</mat-label>
-      <input matInput formControlName="codigoPostal" />
-      @if (mensajeError('codigoPostal')) {
-        <mat-error>{{ mensajeError('codigoPostal') }}</mat-error>
-      }
-    </mat-form-field>
+    <section class="bloque">
+      <h2>Domicilio</h2>
+      <div class="grid">
+        <label class="completo">
+          Dirección
+          <input class="campo" formControlName="direccion" autocomplete="street-address" />
+          @if (mensajeError('direccion')) {
+            <small>{{ mensajeError('direccion') }}</small>
+          }
+        </label>
+        <label>
+          Ciudad
+          <input class="campo" formControlName="ciudad" autocomplete="address-level2" />
+          @if (mensajeError('ciudad')) {
+            <small>{{ mensajeError('ciudad') }}</small>
+          }
+        </label>
+        <label>
+          Código postal
+          <input class="campo" formControlName="codigoPostal" autocomplete="postal-code" />
+          @if (mensajeError('codigoPostal')) {
+            <small>{{ mensajeError('codigoPostal') }}</small>
+          }
+        </label>
+      </div>
+    </section>
 
     <div class="acciones">
-      <a mat-stroked-button routerLink="/clientes">Cancelar</a>
-      <button mat-flat-button color="primary" type="submit">
+      <a class="btn btn-secundario" routerLink="/clientes">Cancelar</a>
+      <button class="btn btn-primario" type="submit" [disabled]="guardando()">
         {{ esEdicion ? 'Guardar cambios' : 'Guardar cliente' }}
       </button>
     </div>

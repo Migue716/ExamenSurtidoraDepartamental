@@ -11,8 +11,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
       const detalle = extraerMensaje(error);
       snackBar.open(detalle, 'Cerrar', {
         duration: 5000,
-        horizontalPosition: 'end',
-        verticalPosition: 'top'
+        panelClass: 'snack-error'
       });
       return throwError(() => error);
     })

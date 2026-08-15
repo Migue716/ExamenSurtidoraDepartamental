@@ -1,9 +1,35 @@
-<mat-toolbar color="primary">
-  <mat-icon>groups</mat-icon>
-  <a class="marca" routerLink="/clientes">Clientes</a>
-  <span class="espacio"></span>
-  <span class="subtitulo">Administración</span>
-</mat-toolbar>
+<header class="barra">
+  <div class="barra-interna">
+    <a class="marca" routerLink="/clientes">
+      <span class="logo-badge" aria-hidden="true">
+        <mat-icon>groups</mat-icon>
+      </span>
+      <span class="textos">
+        <strong>Surtidora</strong>
+        <small>Administración de clientes</small>
+      </span>
+    </a>
+
+    <nav class="nav">
+      <a
+        class="nav-btn"
+        routerLink="/clientes"
+        routerLinkActive="activo"
+        [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>view_list</mat-icon>
+        Listado
+      </a>
+      <a class="nav-btn" routerLink="/clientes/nuevo" routerLinkActive="activo">
+        <mat-icon>person_add</mat-icon>
+        Nuevo
+      </a>
+    </nav>
+  </div>
+
+  @if (carga.visible()) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+</header>
 
 <main class="contenido">
   <router-outlet />

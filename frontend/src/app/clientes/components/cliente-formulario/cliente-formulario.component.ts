@@ -1,12 +1,7 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { CargaService } from '../../../core/services/carga.service';
 import { ClienteEscritura } from '../../models/cliente.model';
 import { ClienteService } from '../../services/cliente.service';
 import { fechaNoFutura } from '../../../shared/validadores/fecha-no-futura.validator';
@@ -14,14 +9,7 @@ import { fechaNoFutura } from '../../../shared/validadores/fecha-no-futura.valid
 @Component({
   selector: 'app-cliente-formulario',
   standalone: true,
-  imports: [
-    ReactiveFormsModule,
-    RouterLink,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatProgressBarModule
-  ],
+  imports: [ReactiveFormsModule, RouterLink],
   templateUrl: './cliente-formulario.component.html',
   styleUrl: './cliente-formulario.component.scss'
 })
@@ -31,10 +19,10 @@ export class ClienteFormularioComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly servicio = inject(ClienteService);
   private readonly snackBar = inject(MatSnackBar);
-  readonly carga = inject(CargaService);
 
   readonly id = signal<number | null>(null);
   readonly guardarIntento = signal(false);
+  readonly guardando = signal(false);
 
   readonly form = this.fb.nonNullable.group({
     nombre: ['', [Validators.required, Validators.maxLength(100)]],
@@ -99,23 +87,27 @@ export class ClienteFormularioComponent implements OnInit {
 
   guardar(): void {
     this.guardarIntento.set(true);
-    if (this.form.invalid) {
+    if (this.form.invalid || this.guardando()) {
       this.form.markAllAsTouched();
       return;
     }
 
+    this.guardando.set(true);
     const dto = this.construirDto();
     const peticion = this.esEdicion
       ? this.servicio.actualizar(this.id()!, dto)
       : this.servicio.crear(dto);
 
-    peticion.subscribe(() => {
-      this.snackBar.open(
-        this.esEdicion ? 'El cliente fue actualizado.' : 'El cliente fue registrado.',
-        'Cerrar',
-        { duration: 3000 }
-      );
-      void this.router.navigate(['/clientes']);
+    peticion.subscribe({
+      next: () => {
+        this.snackBar.open(
+          this.esEdicion ? 'El cliente fue actualizado.' : 'El cliente fue registrado.',
+          'Cerrar',
+          { panelClass: 'snack-ok' }
+        );
+        void this.router.navigate(['/clientes']);
+      },
+      error: () => this.guardando.set(false)
     });
   }
 
