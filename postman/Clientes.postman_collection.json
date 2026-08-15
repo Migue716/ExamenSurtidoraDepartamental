@@ -1,0 +1,74 @@
+{
+  "info": {
+    "name": "API Clientes",
+    "_postman_id": "a3c1e7f0-4b2d-4a11-9c8e-7d1b5f0a91c2",
+    "description": "Colección para el sistema de administración de clientes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5216"
+    }
+  ],
+  "item": [
+    {
+      "name": "Consultar clientes",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/clientes?pagina=1&tamanioPagina=10&buscar=David&activo=true",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "clientes"],
+          "query": [
+            { "key": "pagina", "value": "1" },
+            { "key": "tamanioPagina", "value": "10" },
+            { "key": "buscar", "value": "David" },
+            { "key": "activo", "value": "true" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Consultar cliente por id",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/api/clientes/1"
+      }
+    },
+    {
+      "name": "Registrar cliente",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Laura\",\n  \"apellidoPaterno\": \"Martínez\",\n  \"apellidoMaterno\": \"Gómez\",\n  \"correoElectronico\": \"laura.martinez@correo.com\",\n  \"telefono\": \"3312345678\",\n  \"fechaNacimiento\": \"1990-05-18\",\n  \"direccion\": \"Av. Vallarta 1500\",\n  \"ciudad\": \"Guadalajara\",\n  \"codigoPostal\": \"44110\"\n}"
+        },
+        "url": "{{baseUrl}}/api/clientes"
+      }
+    },
+    {
+      "name": "Modificar cliente",
+      "request": {
+        "method": "PUT",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Laura\",\n  \"apellidoPaterno\": \"Martínez\",\n  \"apellidoMaterno\": \"Gómez\",\n  \"correoElectronico\": \"laura.martinez@correo.com\",\n  \"telefono\": \"3312345678\",\n  \"fechaNacimiento\": \"1990-05-18\",\n  \"direccion\": \"Av. Vallarta 1600\",\n  \"ciudad\": \"Guadalajara\",\n  \"codigoPostal\": \"44110\"\n}"
+        },
+        "url": "{{baseUrl}}/api/clientes/1"
+      }
+    },
+    {
+      "name": "Dar de baja cliente",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "{{baseUrl}}/api/clientes/1"
+      }
+    }
+  ]
+}

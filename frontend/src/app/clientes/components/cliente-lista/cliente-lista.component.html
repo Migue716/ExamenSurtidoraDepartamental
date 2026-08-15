@@ -1,0 +1,90 @@
+<section class="pagina">
+  <header class="encabezado">
+    <div>
+      <h1>Administración de clientes</h1>
+      <p>Consulte, registre, edite y dé de baja clientes desde la API REST.</p>
+    </div>
+    <a mat-flat-button color="primary" routerLink="/clientes/nuevo">
+      <mat-icon>person_add</mat-icon>
+      Nuevo cliente
+    </a>
+  </header>
+
+  @if (carga.visible()) {
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  }
+
+  <form class="filtros" [formGroup]="filtros" (ngSubmit)="buscar()">
+    <mat-form-field appearance="outline">
+      <mat-label>Buscar</mat-label>
+      <input matInput formControlName="buscar" placeholder="Nombre, correo o teléfono..." />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <mat-select formControlName="activo">
+        <mat-option value="true">Activos</mat-option>
+        <mat-option value="false">Inactivos</mat-option>
+        <mat-option value="">Todos</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" type="submit">Buscar</button>
+    <button mat-stroked-button type="button" (click)="limpiar()">Limpiar</button>
+  </form>
+
+  <div class="tabla-contenedor">
+    <table mat-table [dataSource]="clientes()">
+      <ng-container matColumnDef="clienteId">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.clienteId }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="cliente">
+        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+        <td mat-cell *matCellDef="let cliente">{{ nombreCompleto(cliente) }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="correoElectronico">
+        <th mat-header-cell *matHeaderCellDef>Correo</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.correoElectronico }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="telefono">
+        <th mat-header-cell *matHeaderCellDef>Teléfono</th>
+        <td mat-cell *matCellDef="let cliente">{{ cliente.telefono || '—' }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef>Acciones</th>
+        <td mat-cell *matCellDef="let cliente">
+          <button mat-button color="primary" type="button" (click)="editar(cliente)">Editar</button>
+          <button
+            mat-button
+            color="warn"
+            type="button"
+            [disabled]="!cliente.activo"
+            (click)="darDeBaja(cliente)">
+            Baja
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnas"></tr>
+    </table>
+
+    @if (!carga.visible() && clientes().length === 0) {
+      <p class="vacio">No se encontraron clientes con los filtros seleccionados.</p>
+    }
+  </div>
+
+  <mat-paginator
+    [length]="total()"
+    [pageIndex]="pagina()"
+    [pageSize]="tamanioPagina()"
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    (page)="cambiarPagina($event)">
+  </mat-paginator>
+</section>

@@ -1,0 +1,41 @@
+# Build
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+*.nupkg
+project.lock.json
+artifacts/
+
+# IDEs
+.vs/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Secrets y configuración local
+appsettings.*.local.json
+secrets.json
+
+# Node / Angular
+node_modules/
+dist/
+.angular/
+npm-debug.log*
+*.ngtypecheck
+
+# Tests / coverage
+TestResults/
+coverage/
+
+# OS / misc
+*.log
+*.tmp
+.env
+.env.*
+!.env.example
