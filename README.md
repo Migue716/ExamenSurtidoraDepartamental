@@ -134,3 +134,7 @@ Frontend: Angular 18, Angular Material 18, Angular CDK, RxJS.
 - Los errores se responden con `ProblemDetails` y no exponen stack traces ni SQL.
 
 El detalle técnico está en [docs/DOCUMENTO_TECNICO.md](docs/DOCUMENTO_TECNICO.md).
+
+La arquitectura de capas, flujos y responsabilidades está en [docs/README_ARQUITECTURA.md](docs/README_ARQUITECTURA.md).
+
+La colorimetría, tipografía y componentes visuales están en [docs/README_DISENO.md](docs/README_DISENO.md).
