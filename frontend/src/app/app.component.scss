@@ -11,7 +11,6 @@
   padding: 0 1.5rem;
   display: flex;
   align-items: center;
-  justify-content: space-between;
 }
 
 .marca {
@@ -51,39 +50,6 @@
 .textos small {
   font-size: 10px;
   color: rgb(255 255 255 / 50%);
-}
-
-.nav {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.nav-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  padding: 0.38rem 0.75rem;
-  border-radius: 8px;
-  color: rgb(255 255 255 / 60%);
-  text-decoration: none;
-  font-size: 0.75rem;
-  font-weight: 500;
-}
-
-.nav-btn mat-icon {
-  font-size: 14px;
-  width: 14px;
-  height: 14px;
-}
-
-.nav-btn:hover {
-  color: #fff;
-  background: rgb(255 255 255 / 10%);
-}
-
-.nav-btn.activo {
-  background: rgb(255 255 255 / 15%);
-  color: #fff;
 }
 
 .contenido {

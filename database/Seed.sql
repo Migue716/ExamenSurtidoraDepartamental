@@ -1,3 +1,10 @@
+DELETE FROM dbo.Clientes
+WHERE CorreoElectronico IN (
+    N'laura.martinez@correo.com',
+    N'carlos.ramirez@correo.com'
+);
+GO
+
 INSERT INTO dbo.Clientes (
     Nombre,
     ApellidoPaterno,
@@ -14,8 +21,8 @@ INSERT INTO dbo.Clientes (
 VALUES
 (
     N'Laura',
-    N'Martínez',
-    N'Gómez',
+    N'Martinez',
+    N'Gomez',
     N'laura.martinez@correo.com',
     N'3312345678',
     '1990-05-18',
@@ -27,12 +34,12 @@ VALUES
 ),
 (
     N'Carlos',
-    N'Ramírez',
-    N'López',
+    N'Ramirez',
+    N'Lopez',
     N'carlos.ramirez@correo.com',
     N'3398765432',
     '1988-11-03',
-    N'Av. Américas 1200',
+    N'Av. Americas 1200',
     N'Zapopan',
     N'45050',
     1,
