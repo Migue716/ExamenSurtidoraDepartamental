@@ -126,7 +126,7 @@ El interceptor HTTP de Angular muestra el `detail` (o el primer error de validac
 5. **Paginación en servidor:** evita traer la tabla completa. Tamaño máximo 100.
 6. **UTC en auditoría:** independiente de la zona del servidor; el script SQL usa `SYSUTCDATETIME()` para alinearse.
 7. **Secretos:** `appsettings.Development.json` usa Windows Authentication. Credenciales reales deben ir a user secrets o variables de entorno.
-8. **Supuesto de entorno:** SQL Server accesible en `localhost` y Angular en el puerto 4200.
+8. **Supuesto de entorno:** SQL Server LocalDB `(localdb)\MSSQLLocalDB` y Angular en el puerto 4200.
 
 ## 10. Pruebas realizadas
 

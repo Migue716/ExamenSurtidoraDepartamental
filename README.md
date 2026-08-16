@@ -37,8 +37,8 @@ Use **una sola** de las dos opciones siguientes (no combine el script SQL con `d
 Opción A — script SQL:
 
 ```powershell
-sqlcmd -S localhost -E -i database\ClientesDb.sql
-sqlcmd -S localhost -E -d ClientesDb -i database\Seed.sql
+sqlcmd -S "(localdb)\MSSQLLocalDB" -E -i database\ClientesDb.sql
+sqlcmd -S "(localdb)\MSSQLLocalDB" -E -d ClientesDb -i database\Seed.sql
 ```
 
 Opción B — migraciones de Entity Framework Core:
@@ -48,14 +48,14 @@ dotnet tool restore
 dotnet ef database update --project Clientes.DataAccess --startup-project Clientes.Service
 ```
 
-Si SQL Server no está en `localhost`, ajuste `Clientes.Service/appsettings.Development.json` o la variable de entorno `ConnectionStrings__ClientesDb`.
+Si usa otra instancia distinta de LocalDB, ajuste `Clientes.Service/appsettings.Development.json` o la variable de entorno `ConnectionStrings__ClientesDb`.
 
 ## 2. Cadena de conexión
 
-En desarrollo se usa autenticación integrada (sin contraseña):
+En desarrollo se usa SQL Server LocalDB (`MSSQLLocalDB`) con autenticación integrada:
 
 ```
-Server=localhost;Database=ClientesDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True
+Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ClientesDb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=True
 ```
 
 Para otro entorno, no incluya secretos en el repositorio. Ejemplos:

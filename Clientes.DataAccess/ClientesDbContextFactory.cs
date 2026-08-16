@@ -8,7 +8,7 @@ public class ClientesDbContextFactory : IDesignTimeDbContextFactory<ClientesDbCo
     public ClientesDbContext CreateDbContext(string[] args)
     {
         var cadena = Environment.GetEnvironmentVariable("ConnectionStrings__ClientesDb")
-            ?? "Server=localhost;Database=ClientesDb;Trusted_Connection=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
+            ?? "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ClientesDb;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;MultipleActiveResultSets=True";
 
         var opciones = new DbContextOptionsBuilder<ClientesDbContext>()
             .UseSqlServer(cadena);
