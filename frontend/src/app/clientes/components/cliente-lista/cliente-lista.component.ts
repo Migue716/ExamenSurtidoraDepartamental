@@ -154,7 +154,11 @@ export class ClienteListaComponent implements OnInit {
         }
 
         this.servicio.darDeBaja(cliente.clienteId).subscribe(() => {
-          this.snackBar.open('El cliente fue dado de baja.', 'Cerrar', { panelClass: 'snack-ok' });
+          this.snackBar.open(
+            'El cliente fue dado de baja y permanece en el sistema como inactivo. Use el filtro Inactivos o Todos para verlo.',
+            'Cerrar',
+            { panelClass: 'snack-ok', duration: 6000 }
+          );
           this.cargar();
         });
       });

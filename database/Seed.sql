@@ -1,8 +1,7 @@
-DELETE FROM dbo.Clientes
-WHERE CorreoElectronico IN (
-    N'laura.martinez@correo.com',
-    N'carlos.ramirez@correo.com'
-);
+DELETE FROM dbo.Clientes;
+GO
+
+DBCC CHECKIDENT (N'dbo.Clientes', RESEED, 0);
 GO
 
 INSERT INTO dbo.Clientes (
